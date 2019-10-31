@@ -1,0 +1,17 @@
+//
+//  Config.xcconfig
+//  WeatherApp2
+//
+//  Created by ZZJ on 2019/10/19.
+//  Copyright © 2019 Peking University. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+//
+FREE_API_KEY = 376fd0d5d0c3461d806000b385a58682
+PAID_API_KEY = 8f0820dde7744fc490709f0e2725255e
+PAID_W_API_URL = https:/$()/api.heweather.net/s6/weather/
+PAID_A_API_URL = https:/$()/api.heweather.net/s6/air/
+FREE_W_API_URL = https:/$()/free-api.heweather.net/s6/weather/
+FREE_A_API_URL = https:/$()/free-api.heweather.net/s6/air/

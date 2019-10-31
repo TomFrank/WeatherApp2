@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19A602" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AirData" representedClassName="AirData" syncable="YES">
+        <attribute name="aqi" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="DailyData" representedClassName="DailyData" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="info" optional="YES" attributeType="String"/>
+        <attribute name="maxTemp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="minTemp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="HourlyData" representedClassName=".HourlyData" syncable="YES">
+        <attribute name="info" optional="YES" attributeType="String"/>
+        <attribute name="temp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <elements>
+        <element name="HourlyData" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="DailyData" positionX="-45" positionY="27" width="128" height="103"/>
+        <element name="AirData" positionX="-27" positionY="63" width="128" height="58"/>
+    </elements>
+</model>
