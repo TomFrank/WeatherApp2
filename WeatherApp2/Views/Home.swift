@@ -42,9 +42,9 @@ struct Home: View {
                     Spacer()
                     settingButton
                 }.frame(height: 30).padding([.trailing])
-                RefreshableScrollView(refreshing: $userData.weatherManager.loading) {
-                    // ScrollView {
-                    MainWeatherView(weatherManager: self.userData.weatherManager)
+//                RefreshableScrollView(refreshing: $userData.weatherManager.loading) {
+                ScrollView {
+                    MainWeatherView(weather: self.weather)
                     Divider()
                     HourlyForecastScroll(weather: self.weather)
                     Divider()
@@ -52,7 +52,8 @@ struct Home: View {
                     Divider()
                     AirIndexView(air: self.air)
                 }
-            }.padding([.leading, .trailing])
+            }
+            .padding([.leading, .trailing])
         }
         .sheet(isPresented: self.$showingSettings) {
             SettingView()

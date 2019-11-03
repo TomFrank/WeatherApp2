@@ -46,12 +46,12 @@ struct SettingView: View {
                         }
                     }
                 }
+                .listStyle(GroupedListStyle())
                 Section {
-                    Button(Text(APIKeyManager.shared.paid ? "专业版" : "基础版")) {
+                    Button(APIKeyManager.shared.paid ? "专业版" : "基础版") {
                         APIKeyManager.shared.paid.toggle()
                     }
                 }
-                .listStyle(GroupedListStyle())
                 
             }
             .navigationBarTitle(Text("设置"), displayMode: .inline)

@@ -9,11 +9,7 @@
 import SwiftUI
 
 struct MainWeatherView: View {
-    var weatherManager: WeatherManager
-    
-    var weather: Weather {
-        weatherManager.weatherApi.weather
-    }
+    var weather: Weather
     
     var body: some View {
         VStack(alignment: .center,spacing: 10) {
@@ -31,7 +27,7 @@ struct MainWeatherView: View {
             HStack {
                 Text("数据: heweather.com").font(.footnote)
                 Spacer()
-                Text("更新于 \(weatherManager.outdated ? weather.update.localTime.toString(with: "h:mm") : weather.update.localTime.toString(with: "M-d"))").font(.footnote)
+                Text("更新于 \(Date().timeIntervalSince(weather.update.localTime) < 24 * 60 * 60 ? weather.update.localTime.toString(with: "h:mm") : weather.update.localTime.toString(with: "M-d"))").font(.footnote)
             }
             .padding([.leading, .trailing])
         }
@@ -40,7 +36,7 @@ struct MainWeatherView: View {
 
 struct MainWeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        MainWeatherView(weatherManager: UserData().weatherManager)
+        MainWeatherView(weather: UserData().weatherManager.weatherApi.weather)
             .previewLayout(.sizeThatFits)
     }
 }

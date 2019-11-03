@@ -138,7 +138,7 @@ struct Basic: Codable, Identifiable, Hashable {
 }
 
 struct Update: Codable {
-    var localTime: Date // 当地时间，24小时制，格式yyyy-MM-dd HH:mm
+    let localTime: Date // 当地时间，24小时制，格式yyyy-MM-dd HH:mm
     let utcTime: Date // UTC时间，24小时制，格式yyyy-MM-dd HH:mm
     
     enum CodingKeys: String, CodingKey {

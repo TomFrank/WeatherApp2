@@ -18,11 +18,11 @@ class WeatherManager: NSObject, CLLocationManagerDelegate {
     public private(set) var airApi: AirAPI = AirAPI(unit: "m", lang: "zh")
     var city = CityAPI()
     
-        var loading: Bool = false {
+    var loading: Bool = false {
         didSet {
             if oldValue == false && loading == true {
                 // Do async stuff here
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+                DispatchQueue.main.async {
                     self.update()
                     // When finished loading (must be done on the main thread)
                     self.loading = false
@@ -31,9 +31,9 @@ class WeatherManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    var outdated: Bool {
-        weatherApi.weather.update.localTime.timeIntervalSinceNow > -24 * 60 * 60
-    }
+//    var outdated: Bool {
+//        weatherApi.weather.update.localTime.timeIntervalSinceNow > -24 * 60 * 60
+//    }
     
     private lazy var lastCheckTime: Date = weatherApi.weather.update.localTime
     var autoUpdate: Bool = true
@@ -84,7 +84,7 @@ class WeatherManager: NSObject, CLLocationManagerDelegate {
     }
     
     func update() {
-        if lastCheckTime.timeIntervalSinceNow > -10 {
+        if lastCheckTime.timeIntervalSinceNow > -60 {
             print("Weather already up-to-date")
         } else {
 //            print("Weather updated")

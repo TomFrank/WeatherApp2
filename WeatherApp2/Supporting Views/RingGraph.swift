@@ -14,31 +14,36 @@ struct RingGraph: View {
     
     @State var animate = false
     
-    var findex: CGFloat {
+    private var findex: CGFloat {
         CGFloat(Float(index) ?? 0)
     }
     
     var body: some View {
-        ZStack {
-            Circle()
-                .stroke(Color.gray, lineWidth: 10)
-                .opacity(0.2)
-            Circle()
-                .trim(from: 0.1, to: animate ? 0.1 + 0.8 * findex / 500 : 0.1)
-                .stroke(Color.blue, style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                .rotationEffect(.degrees(90))
-                .animation(Animation.linear(duration: 1.5))
-                .onAppear {
-                    self.animate.toggle()
+        GeometryReader { geo in
+            ZStack {
+                Circle()
+//                    .trim(from: 0, to: 1)
+                    .stroke(Color.gray, lineWidth: 10)
+                    .opacity(0.2)
+                    .frame(width: geo.size.width, height: geo.size.width)
+//                    .position(x: geo.size.width/2, y: geo.size.height/2)
+                Circle()
+                    .trim(from: 0.1, to: self.animate ? 0.1 + 0.8 * self.findex / 500 : 0.1)
+                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                    .frame(width: geo.size.width, height: geo.size.width)
+//                    .position(x: geo.size.width/2, y: geo.size.height/2)
+                    .rotationEffect(.degrees(90), anchor: .center)
+                    .animation(Animation.linear(duration: 1))
+                    .onAppear {
+                        self.animate.toggle()
+                    }
+                    .onDisappear {
+                        self.animate.toggle()
+                    }
+                VStack {
+                    Text(self.name).padding()
+                    Text("\(self.index)").fontWeight(.bold)
                 }
-                .onDisappear {
-                    self.animate.toggle()
-                }
-                
-            VStack {
-                Text(name)
-                    .padding()
-                Text("\(index)").fontWeight(.bold)
             }
         }
     }
@@ -46,7 +51,7 @@ struct RingGraph: View {
 
 struct RingGraph_Previews: PreviewProvider {
     static var previews: some View {
-        RingGraph(index: UserData().weatherManager.airApi.air.airNowCity.aqi, name: "AQI")
+        RingGraph(index: "500", name: "AQI")
             .previewLayout(.sizeThatFits)
     }
 }
